@@ -38,8 +38,6 @@ describe GrapeMarkdown::Document do
 
     it 'includes properties for the resources' do
       expect(subject).to include('Properties')
-      `clear`
-      puts subject
     end
   end
 
