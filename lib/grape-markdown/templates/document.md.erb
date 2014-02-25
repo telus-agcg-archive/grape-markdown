@@ -1,0 +1,15 @@
+# <%= name %>
+
+<%= description %>
+
+<% resources.each do |resource| %>
+# <%= resource.title %>
+<%= properties_table(resource) %>
+  <% resource.namespaced.each do |grouped_resource| %>
+    <% grouped_resource.paths.each do |resource_by_path| %>
+      <% resource_by_path.routes.each do |route| %>
+## <%= route.route_description %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
