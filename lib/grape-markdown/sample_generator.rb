@@ -29,11 +29,7 @@ module GrapeMarkdown
 
       return unless hash.present?
 
-      # format json spaces for blueprint markdown
       JSON.pretty_generate(hash)
-        .gsub('{', (' ' * 14) + '{')
-        .gsub('}', (' ' * 14) + '}')
-        .gsub(/\ {2}\"/, (' ' * 16) + '"')
     end
 
     def response(list = false)
@@ -43,13 +39,7 @@ module GrapeMarkdown
 
       hash = [hash] if list
 
-      # format json spaces for blueprint markdown
       JSON.pretty_generate(hash)
-        .gsub('[', (' ' * 12) + '[')
-        .gsub(']', (' ' * 12) + ']')
-        .gsub('{', (' ' * 14) + '{')
-        .gsub('}', (' ' * 14) + '}')
-        .gsub(/\ {2}\"/, (' ' * 16) + '"')
     end
   end
 end
