@@ -42,8 +42,10 @@ describe GrapeMarkdown::Document do
   end
 
   it 'exposes configuration settings' do
-    GrapeMarkdown::Config::SETTINGS.each do |setting|
-      expect(subject.send(setting)).to eq(GrapeMarkdown.config.send(setting))
+    GrapeMarkdown::Configuration::SETTINGS.each do |setting|
+      value = GrapeMarkdown.config.send(setting)
+
+      expect(subject.send(setting)).to eq(value)
     end
   end
 

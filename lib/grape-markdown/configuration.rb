@@ -1,5 +1,5 @@
 module GrapeMarkdown
-  class Config
+  class Configuration
     SETTINGS = [
       :name,
       :description,

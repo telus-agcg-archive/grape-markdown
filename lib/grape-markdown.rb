@@ -2,7 +2,7 @@ require 'grape'
 
 module GrapeMarkdown
   autoload :Version,         'grape-markdown/version'
-  autoload :Config,          'grape-markdown/config'
+  autoload :Configuration,   'grape-markdown/configuration'
   autoload :Parameter,       'grape-markdown/parameter'
   autoload :SampleGenerator, 'grape-markdown/sample_generator'
   autoload :Route,           'grape-markdown/route'
@@ -10,7 +10,7 @@ module GrapeMarkdown
   autoload :Document,        'grape-markdown/document'
 
   def self.config
-    block_given? ? yield(Config) : Config
+    block_given? ? yield(Configuration) : Configuration
   end
 end
 

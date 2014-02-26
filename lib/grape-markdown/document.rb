@@ -2,7 +2,10 @@ module GrapeMarkdown
   class Document
     attr_reader :api_class, :document_template, :properties_template
 
-    delegate(*GrapeMarkdown::Config::SETTINGS, to: 'GrapeMarkdown::Config')
+    delegate(
+      *GrapeMarkdown::Configuration::SETTINGS,
+      to: 'GrapeMarkdown::Configuration'
+    )
 
     def initialize(api_class)
       @api_class           = api_class
@@ -39,11 +42,11 @@ module GrapeMarkdown
     end
 
     def formatted_request_headers
-      formatted_headers(GrapeMarkdown::Config.request_headers)
+      formatted_headers(GrapeMarkdown::Configuration.request_headers)
     end
 
     def formatted_response_headers
-      formatted_headers(GrapeMarkdown::Config.response_headers)
+      formatted_headers(GrapeMarkdown::Configuration.response_headers)
     end
 
     def show_request_sample?(route)

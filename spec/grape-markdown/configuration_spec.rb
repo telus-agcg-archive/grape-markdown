@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe GrapeMarkdown::Config do
+describe GrapeMarkdown::Configuration do
   include_context 'configuration'
 
-  subject { GrapeMarkdown::Config }
+  subject { GrapeMarkdown::Configuration }
 
   it 'allows for name to be set' do
     subject.name = name

@@ -37,7 +37,7 @@ module GrapeMarkdown
         type:           'uuid',
         desc:           "the `id` of the `#{model}`",
         documentation:  {
-          example:      GrapeMarkdown::Config.generate_id
+          example:      GrapeMarkdown::Configuration.generate_id
         }
       }
     end
