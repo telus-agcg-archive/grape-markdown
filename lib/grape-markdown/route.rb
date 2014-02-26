@@ -45,6 +45,10 @@ module GrapeMarkdown
       %w(GET POST).include?(route_method) && !route_path.include?(':id')
     end
 
+    def route_binding
+      binding
+    end
+
     private
 
     def request_body?
