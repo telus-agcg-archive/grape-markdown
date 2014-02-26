@@ -11,7 +11,7 @@ module GrapeMarkdown
     end
 
     def generate
-      ERB.new(document_template, nil, '-').result(binding)
+      render(document_template, binding)
     end
 
     def write
@@ -35,7 +35,7 @@ module GrapeMarkdown
     end
 
     def properties_table(resource)
-      ERB.new(properties_template, nil, '-').result(resource.resource_binding)
+      render(properties_template, resource.resource_binding)
     end
 
     def formatted_request_headers
@@ -51,6 +51,10 @@ module GrapeMarkdown
     end
 
     private
+
+    def render(template, binding = nil)
+      ERB.new(template, nil, '-').result(binding)
+    end
 
     def template_for(name)
       directory = File.dirname(File.expand_path(__FILE__))
