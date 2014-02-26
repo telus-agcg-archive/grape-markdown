@@ -17,6 +17,18 @@ describe GrapeMarkdown::Configuration do
     expect(subject.description).to eq(description)
   end
 
+  context '.extend' do
+    before do
+      subject.extend(:foo)
+    end
+
+    it 'allows for adding a new setting' do
+      subject.foo = :bar
+
+      expect(subject.foo).to eq(:bar)
+    end
+  end
+
   context '.include_root' do
     it 'defaults to false' do
       expect(subject.include_root).to be(false)

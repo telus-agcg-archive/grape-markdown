@@ -13,6 +13,10 @@ module GrapeMarkdown
     class << self
       attr_accessor(*SETTINGS)
 
+      def extend(setting)
+        self.class.send :attr_accessor, setting
+      end
+
       def request_headers
         @request_headers ||= []
       end
