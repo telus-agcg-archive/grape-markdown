@@ -24,22 +24,32 @@ module GrapeMarkdown
       hash
     end
 
-    def request
+    def request(opts = {})
       hash = sample
 
       return unless hash.present?
 
-      JSON.pretty_generate(hash)
+      json(hash, opts[:pretty])
     end
 
-    def response(list = false)
+    def response(opts = {})
       hash = sample(true)
 
       return unless hash.present?
 
-      hash = [hash] if list
+      hash = [hash] if opts[:list]
 
-      JSON.pretty_generate(hash)
+      json(hash, opts[:pretty])
+    end
+
+    private
+
+    def json(hash, pretty = true)
+      if pretty
+        JSON.pretty_generate(hash)
+      else
+        JSON.generate(hash)
+      end
     end
   end
 end

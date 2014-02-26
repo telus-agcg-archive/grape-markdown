@@ -32,12 +32,12 @@ module GrapeMarkdown
       "#{title} #{route.route_type} [#{route.route_path_without_format}]"
     end
 
-    def sample_request
-      sample_generator.request
+    def sample_request(pretty = true)
+      sample_generator.request(pretty: pretty)
     end
 
-    def sample_response(route)
-      sample_generator.response(route.list?)
+    def sample_response(route, pretty = true)
+      sample_generator.response(list: route.list?, pretty: pretty)
     end
 
     def unique_params
