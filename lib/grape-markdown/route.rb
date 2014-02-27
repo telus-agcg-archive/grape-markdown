@@ -19,6 +19,10 @@ module GrapeMarkdown
         route_path.match('\/(\w*?)[\.\/\(]').captures.first
     end
 
+    def route_short_description
+      "#{route_method.titleize} a #{route_model}"
+    end
+
     def route_path_without_format
       route_path.gsub(/\((.*?)\)/, '')
     end
