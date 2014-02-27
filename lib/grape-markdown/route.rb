@@ -35,16 +35,6 @@ module GrapeMarkdown
       list? ? 'collection' : 'single'
     end
 
-    def request_description
-      "+ Request #{'(application/json)' if request_body?}"
-    end
-
-    def response_description
-      code = route_method == 'POST' ? 201 : 200
-
-      "+ Response #{code} (application/json)"
-    end
-
     def list?
       %w(GET POST).include?(route_method) && !route_path.include?(':id')
     end
