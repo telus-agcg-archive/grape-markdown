@@ -18,7 +18,7 @@ module GrapeMarkdown
 
       hash = Hash[array.compact]
 
-      hash = hash.reverse_merge(id: Configuration.generate_id) if id
+      hash = hash.reverse_merge('id' => Configuration.generate_id) if id
       hash = { root => hash } if Configuration.include_root
 
       hash
