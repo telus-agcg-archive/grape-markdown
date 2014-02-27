@@ -36,7 +36,7 @@ module GrapeMarkdown
     end
 
     def list?
-      %w(GET POST).include?(route_method) && !route_path.include?(':id')
+      route_method == 'GET' && !route_path.include?(':id')
     end
 
     def route_binding
