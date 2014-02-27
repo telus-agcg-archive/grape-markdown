@@ -39,6 +39,10 @@ describe GrapeMarkdown::Document do
     it 'includes properties for the resources' do
       expect(subject).to include('Properties')
     end
+
+    it 'includes short route descriptions' do
+      expect(subject).to include('## Post a Widget')
+    end
   end
 
   it 'exposes configuration settings' do

@@ -38,7 +38,9 @@ module GrapeMarkdown
       #{list? ? route_title : route_title.singularize}
       DESCRIPTION
 
-      description << "on a #{root_resource_title.singularize}" if has_parent?
+      description << "on a #{root_resource_title.singularize}" if parent?
+
+      description
     end
 
     def route_path_without_format
@@ -63,7 +65,7 @@ module GrapeMarkdown
       !%w(GET DELETE).include?(route_method)
     end
 
-    def has_parent?
+    def parent?
       route_name != root_resource
     end
   end
