@@ -2,7 +2,7 @@ module GrapeMarkdown
   class Parameter
     attr_reader :route, :full_name, :name, :settings
 
-    delegate :route_model, :route_namespace, to: :route
+    delegate :route_name, :route_namespace, to: :route
     delegate :requirement, :type, :documentation, :desc, to: :settings
     delegate :example, to: :documentation, allow_nil: true
 
@@ -29,7 +29,7 @@ module GrapeMarkdown
     end
 
     def default_options(options)
-      model = name.include?('_id') ? name.gsub('_id', '') : route.route_model
+      model = name.include?('_id') ? name.gsub('_id', '') : route.route_name
 
       {
         required:       true,

@@ -45,10 +45,6 @@ module GrapeMarkdown
       route_path.gsub(/\((.*?)\)/, '')
     end
 
-    def route_model
-      route_namespace.split('/').last.singularize
-    end
-
     def route_type
       list? ? 'collection' : 'single'
     end
