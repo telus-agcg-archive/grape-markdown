@@ -8,7 +8,7 @@
   <% resource.namespaced.each do |grouped_resource| %>
     <% grouped_resource.paths.each do |resource_by_path| %>
       <% resource_by_path.routes.each do |route| %>
-## <%= route.route_description %>
+## <%= route.route_short_description %>
       <% end %>
     <% end %>
   <% end %>

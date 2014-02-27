@@ -8,6 +8,14 @@ module GrapeMarkdown
              :route_description,
              to: '__getobj__'
 
+    def root_resource
+      route_namespace.split('/').reject(&:empty?).first
+    end
+
+    def root_resource_title
+      root_resource.titleize
+    end
+
     def route_params
       @route_params ||= __getobj__.route_params.sort.map do |param|
         Parameter.new(self, *param)
@@ -19,8 +27,18 @@ module GrapeMarkdown
         route_path.match('\/(\w*?)[\.\/\(]').captures.first
     end
 
+    def route_title
+      route_name.titleize
+    end
+
     def route_short_description
-      "#{route_method.titleize} a #{route_model}"
+      description = <<-DESCRIPTION.gsub(/^\s*/, '').gsub(/\n/, ' ').squeeze
+      #{route_method.titleize} a
+      #{list? ? 'list of '  : ' '}
+      #{list? ? route_title : route_title.singularize}
+      DESCRIPTION
+
+      description << "on a #{root_resource_title.singularize}" if has_parent?
     end
 
     def route_path_without_format
@@ -47,6 +65,10 @@ module GrapeMarkdown
 
     def request_body?
       !%w(GET DELETE).include?(route_method)
+    end
+
+    def has_parent?
+      route_name != root_resource
     end
   end
 end
