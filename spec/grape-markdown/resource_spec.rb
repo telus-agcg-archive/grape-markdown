@@ -15,7 +15,7 @@ describe GrapeMarkdown::Resource do
     it 'response generation is delegated to a generator' do
       expect(subject.sample_generator).to receive(:response)
 
-      subject.sample_response(GrapeMarkdown::Route.new(Grape::Route.new))
+      subject.sample_response(GrapeMarkdown::Route.new(Grape::Router::Route.new('GET', '/')))
     end
   end
 end

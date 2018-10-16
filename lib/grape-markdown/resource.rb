@@ -14,7 +14,7 @@ module GrapeMarkdown
     end
 
     def namespaced
-      @namespaced ||= routes.group_by(&:route_namespace).map do |_, routes|
+      @namespaced ||= routes.group_by(&:namespace).map do |_, routes|
         Resource.new(name, routes)
       end
     end
@@ -46,7 +46,7 @@ module GrapeMarkdown
       methods = %w(POST PUT)
 
       potential = routes.select do |route|
-        methods.include?(route.route_method) && route.route_params.present?
+        methods.include?(route.request_method) && route.route_params.present?
       end
 
       if potential.present?

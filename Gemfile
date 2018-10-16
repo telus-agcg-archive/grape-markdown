@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in grape-markdown.gemspec
 gemspec
 
-gem 'grape', github: 'intridea/grape'
+gem 'grape'
 
 group :development, :test do
   gem 'coveralls', '~> 0.7'
