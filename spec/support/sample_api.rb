@@ -27,7 +27,7 @@ class SampleApi < Grape::API
       optional :name, type: String, desc: 'the widgets name'
       optional :description, type: String, desc: 'the widgets name'
     end
-    put  ':id' do
+    put ':id' do
     end
   end
 

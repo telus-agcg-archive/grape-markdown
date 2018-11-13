@@ -2,11 +2,13 @@ module GrapeMarkdown
   class Route < SimpleDelegator
     # would like to rely on SimpleDelegator but Grape::Route uses
     # method_missing for these methods :'(
-    delegate :namespace,
-             :path,
-             :request_method,
-             :route_description,
-             to: '__getobj__'
+    delegate(
+      :namespace,
+      :path,
+      :request_method,
+      :route_description,
+      to: '__getobj__'
+    )
 
     def root_resource
       namespace.split('/').reject(&:empty?).first

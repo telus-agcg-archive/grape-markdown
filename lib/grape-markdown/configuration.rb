@@ -1,14 +1,14 @@
 module GrapeMarkdown
   class Configuration
-    SETTINGS = [
-      :name,
-      :description,
-      :request_headers,
-      :response_headers,
-      :example_id_type,
-      :resource_exclusion,
-      :include_root
-    ]
+    SETTINGS = %i(
+      name
+      description
+      request_headers
+      response_headers
+      example_id_type
+      resource_exclusion
+      include_root
+    ).freeze
 
     class << self
       attr_accessor(*SETTINGS)
@@ -34,14 +34,14 @@ module GrapeMarkdown
       end
 
       def supported_id_types
-        [:integer, :uuid, :bson]
+        %i(integer uuid bson)
       end
 
       def example_id_type=(value)
-        fail UnsupportedIDType unless supported_id_types.include?(value)
+        raise UnsupportedIDType unless supported_id_types.include?(value)
 
         if value.to_sym == :bson && !Object.const_defined?('BSON')
-          fail BSONNotDefinied
+          raise BSONNotDefinied
         end
 
         @example_id_type = value
