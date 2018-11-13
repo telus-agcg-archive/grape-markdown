@@ -42,7 +42,7 @@ describe GrapeMarkdown::Configuration do
   end
 
   context 'headers' do
-    [:request_headers, :response_headers].each do |type|
+    %i(request_headers response_headers).each do |type|
       context type do
         it 'is an array' do
           expect(subject.send(type)).to be_a(Array)

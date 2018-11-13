@@ -1,7 +1,7 @@
 AllCops:
+  TargetRubyVersion: 2.2
   Excludes:
-    - Rakefile
-    - vendor/**
+    - vendor/**/*
     - bin/**
 
 Documentation:
@@ -12,7 +12,23 @@ Encoding:
   # no need to always specify encoding
   Enabled: false
 
-LineLength:
-  # just one more character please
-  Max: 80
+Metrics/BlockLength:
+  Exclude:
+    - grape-markdown.gemspec
+    - spec/**/*
 
+Naming/FileName:
+  Exclude:
+    - lib/grape-markdown.rb
+
+Performance/StringReplacement:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    "%i": ()
+    "%w": ()

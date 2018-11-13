@@ -28,17 +28,15 @@ module GrapeMarkdown
       JSON.parse(options.to_json, object_class: OpenStruct)
     end
 
-    def default_options(options)
+    def default_options(_options)
       model = name.include?('_id') ? name.gsub('_id', '') : route.route_name
 
       {
-        required:       true,
-        requirement:    'required',
-        type:           'uuid',
-        desc:           "the `id` of the `#{model}`",
-        documentation:  {
-          example:      GrapeMarkdown::Configuration.generate_id
-        }
+        required: true,
+        requirement: 'required',
+        type: 'uuid',
+        desc: "the `id` of the `#{model}`",
+        documentation: { example: GrapeMarkdown::Configuration.generate_id }
       }
     end
   end

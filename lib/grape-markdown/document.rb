@@ -18,7 +18,7 @@ module GrapeMarkdown
     end
 
     def write
-      fail 'Not yet supported'
+      raise 'Not yet supported'
     end
 
     def routes
@@ -29,7 +29,7 @@ module GrapeMarkdown
 
     def resources
       @resources ||= begin
-        grouped_routes = routes.group_by(&:route_name).reject do |name, routes|
+        grouped_routes = routes.group_by(&:route_name).reject do |name, _routes|
           resource_exclusion.include?(name.parameterize.underscore.to_sym)
         end
 
