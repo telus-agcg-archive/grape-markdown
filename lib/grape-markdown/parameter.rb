@@ -2,7 +2,7 @@ module GrapeMarkdown
   class Parameter
     attr_reader :route, :full_name, :name, :settings
 
-    delegate :route_name, :route_namespace, to: :route
+    delegate :route_name, :namespace, to: :route
     delegate :requirement, :type, :documentation, :desc, to: :settings
     delegate :example, to: :documentation, allow_nil: true
 
@@ -25,7 +25,7 @@ module GrapeMarkdown
 
       options[:requirement] = options[:required] ? 'required' : 'optional'
 
-      Hashie::Mash.new(options)
+      JSON.parse(options.to_json, object_class: OpenStruct)
     end
 
     def default_options(options)

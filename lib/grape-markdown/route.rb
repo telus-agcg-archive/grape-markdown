@@ -2,14 +2,14 @@ module GrapeMarkdown
   class Route < SimpleDelegator
     # would like to rely on SimpleDelegator but Grape::Route uses
     # method_missing for these methods :'(
-    delegate :route_namespace,
-             :route_path,
-             :route_method,
+    delegate :namespace,
+             :path,
+             :request_method,
              :route_description,
              to: '__getobj__'
 
     def root_resource
-      route_namespace.split('/').reject(&:empty?).first
+      namespace.split('/').reject(&:empty?).first
     end
 
     def root_resource_title
@@ -17,13 +17,13 @@ module GrapeMarkdown
     end
 
     def route_params
-      @route_params ||= __getobj__.route_params.sort.map do |param|
+      @route_params ||= __getobj__.params.sort.map do |param|
         Parameter.new(self, *param)
       end
     end
 
     def route_name
-      route_namespace.split('/').last ||
+      namespace.split('/').last ||
         route_path.match('\/(\w*?)[\.\/\(]').captures.first
     end
 
@@ -33,7 +33,7 @@ module GrapeMarkdown
 
     def route_short_description
       description = <<-DESCRIPTION.gsub(/^\s*/, '').gsub(/\n/, ' ').squeeze
-      #{route_method.titleize} a
+      #{request_method.titleize} a
       #{list? ? 'list of '  : ' '}
       #{list? ? route_title : route_title.singularize}
       DESCRIPTION
@@ -44,7 +44,7 @@ module GrapeMarkdown
     end
 
     def route_path_without_format
-      route_path.gsub(/\((.*?)\)/, '')
+      path.gsub(/\((.*?)\)/, '')
     end
 
     def route_type
@@ -52,7 +52,7 @@ module GrapeMarkdown
     end
 
     def list?
-      route_method == 'GET' && !route_path.include?(':id')
+      request_method == 'GET' && !path.include?(':id')
     end
 
     def route_binding
@@ -62,7 +62,7 @@ module GrapeMarkdown
     private
 
     def request_body?
-      !%w(GET DELETE).include?(route_method)
+      !%w(GET DELETE).include?(request_method)
     end
 
     def parent?

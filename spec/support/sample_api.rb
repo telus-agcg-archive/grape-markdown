@@ -11,11 +11,11 @@ class SampleApi < Grape::API
     desc 'create a widget'
     params do
       requires :name,
-               type: 'string',
+               type: String,
                desc: 'the widgets name',
                documentation: { example: 'super widget' }
       optional :description,
-               type: 'string',
+               type: String,
                desc: 'the widgets name',
                documentation: { example: 'the best widget ever made' }
     end
@@ -24,8 +24,8 @@ class SampleApi < Grape::API
 
     desc 'update a widget'
     params do
-      optional :name, type: 'string', desc: 'the widgets name'
-      optional :description, type: 'string', desc: 'the widgets name'
+      optional :name, type: String, desc: 'the widgets name'
+      optional :description, type: String, desc: 'the widgets name'
     end
     put  ':id' do
     end
@@ -35,7 +35,7 @@ class SampleApi < Grape::API
     desc 'create a sprocket for a specific widget'
     params do
       requires :name,
-               type: 'string',
+               type: String,
                desc: 'the widgets name',
                documentation: { example: 'super widget' }
     end
@@ -45,7 +45,7 @@ class SampleApi < Grape::API
     desc 'updates a sprocket for a specific widget'
     params do
       requires :name,
-               type: 'string',
+               type: String,
                desc: 'the widgets name',
                documentation: { example: 'super widget' }
     end

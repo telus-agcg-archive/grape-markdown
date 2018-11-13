@@ -30,7 +30,7 @@ module GrapeMarkdown
     def resources
       @resources ||= begin
         grouped_routes = routes.group_by(&:route_name).reject do |name, routes|
-          resource_exclusion.include?(name.parameterize('_').to_sym)
+          resource_exclusion.include?(name.parameterize.underscore.to_sym)
         end
 
         grouped_routes.map { |name, routes| Resource.new(name, routes) }
@@ -38,7 +38,7 @@ module GrapeMarkdown
     end
 
     def properties_table(resource)
-      render(properties_template, resource.resource_binding)
+      render(properties_template, resource.route_binding)
     end
 
     def formatted_request_headers
@@ -50,7 +50,7 @@ module GrapeMarkdown
     end
 
     def show_request_sample?(route)
-      %w(PUT POST).include?(route.route_method)
+      %w(PUT POST).include?(route.request_method)
     end
 
     private
